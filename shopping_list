@@ -1,0 +1,43 @@
+computer_list = [
+    ("computer", 100),
+    ("monitor", 50),
+    ("keyboard", 30),
+    ("mouse", 20),
+    ("mouse mat", 10),
+]
+print("Choose what you want to buy from the list:")
+for index, (part, price) in enumerate(computer_list):
+    print("{}: {} - {} kuna".format(index + 1, part, price))
+
+item_to_add = None
+number_of_items = 0
+total_list = []
+price = []
+total_price = 0
+
+while item_to_add != 0:
+    item_to_add = int(input())
+    if 1 <= item_to_add <= len(computer_list):
+        if computer_list[item_to_add - 1][0] in total_list:
+            print("You removed item: {} from your list.".format(computer_list[item_to_add - 1][0]))
+            total_list.remove(computer_list[item_to_add - 1][0])
+            price = computer_list[item_to_add - 1][1]
+            total_price -= price
+            print("Your list now contains {} items: {}. Total costs is {} kuna."
+                  .format(number_of_items, total_list, total_price))
+        else:
+            print("You add {0} in your list. The price is {1} kuna."
+                  .format((computer_list[item_to_add - 1][0]), (computer_list[item_to_add - 1][1])))
+            number_of_items += 1
+            total_list.append(computer_list[item_to_add - 1][0])
+            price = computer_list[item_to_add - 1][1]
+            total_price += price
+            print("Your list now contains {} items: {}. Total costs is {} kuna."
+                  .format(number_of_items, total_list, total_price))
+    elif item_to_add == 0:
+        break
+    else:
+        print("There is no item under number {}. Please try again or choose 0 for end of list"
+              .format(item_to_add))
+print("You choose to buy: {}. Total cost is {}. Don't forget to PAY THE LADY!."
+      .format(total_list, total_price))
